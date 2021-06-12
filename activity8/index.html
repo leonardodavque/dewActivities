@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arknoid Clase</title>
+
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+     
+ <div class="container col-10">
+    <h2>Arknoid</h2>
+    <hr />
+    <div class="row d-flex justify-content-between">
+        <input type="submit" id="start" class="col-3 btn btn-primary btn-sm" value="Comenzar"
+            style="cursor:pointer;"/>
+           
+       <!--  Puntuación -->
+       <div id="score" class="col-4 text-center p-1"></div>
+       <input type="button"  id="reset" class="col-3 btn btn-primary btn-sm" value="Reset"
+            style="cursor:pointer;"/>
+        
+    </div>
+</div>
+
+<div class="row col-12 d-flex justify-content-center">
+    <div class="game col-3 "></div>
+</div>
+
+<script>
+   
+    window.onload = init;
+    
+    function init() {
+        // Se obtiene el elemento
+        let gameArea = document.getElementsByClassName("game")[0];
+        //Número de columnas
+        let rows = 5;
+        // Número de Lineas
+        let cols = 4;
+        //total ladrillos
+        let total = rows * cols;
+        // separación lateral de los ladrillos
+        let bWidth = 58;
+        // Separación alto y bajo de los ladrillos
+        let bHeight = 28;
+        // para cargar los ladrillos
+        let bricks = [];
+        // moviemiento eje x
+        let speedX = 5;
+        //movimiento eje Y
+        let speedY = -5;
+        //golpeo de la bola
+        let ballId = null;
+        // margen izquierdo
+        let lf = 0;
+        // margen superior
+        let tp = 0;
+        // barra desplazable
+        let flap;
+        //bola
+        let ball;
+        // Para la puntuación
+        let n = 0;
+        // se captura el botón start para comenzar el juego
+        let start = document.getElementById("start");
+        /// se captura el botón reset para resetear partida
+        let reset = document.getElementById("reset");
+        //para obtener la puntuación
+        let score = document.getElementById("score");
+        score.innerHTML = "Puntuación: " + n;
+        //Se llama al método para dibujar los ladrillos que es lo primero
+        renderDom();
+        // Método para el moviemiento de la barra con las flechas izq y der
+        bindDom();
+
+        
+        function renderDom() {
+            getBrick();
+            // se dibujan los ladrillos
+            function getBrick() {
+                for (let i = 0; i < rows; i++) {
+                    let tp = i * bHeight;
+                    let brick = null;
+                    for (let j = 0; j < cols; j++) {
+                        let lf = j * bWidth;
+                        brick = document.createElement("div");
+                        brick.className = "brick";
+                        brick.setAttribute("style", "top:" + tp + "px;left:" + lf + "px;");
+                        // Se le pone color al ladrillo
+                        brick.style.backgroundColor = 'gray';
+                        bricks.push({"indice":j,"div":brick,"colision":3});
+                        //se carga el ladrillo en el html
+                        gameArea.appendChild(brick);
+                    }
+                }
+            }
+
+            //se añade la barra
+            flap = document.createElement("div");
+            flap.className = "flap";
+            gameArea.appendChild(flap);
+            //Se añade la bola
+            ball = document.createElement("div");
+            ball.className = "ball";
+            gameArea.appendChild(ball);
+        }
+
+        // Movimiento con el teclado
+        function bindDom() {
+            flap = document.getElementsByClassName("flap")[0];
+            window.onkeydown = function (e) {
+                let ev = e || window.event;
+                // mover hacia la izquierda
+                let lf = null;
+                // Se captura la flecha izquierda
+                if (e.keyCode ==37) {
+                    lf = flap.offsetLeft - 32;
+                    if (lf < 0) {
+                        lf = 0;
+                    }
+                    flap.style.left = lf + "px";
+                    // Se captura la flecha derecha
+                } else if (e.keyCode == 39) {
+                    lf = flap.offsetLeft + 32;
+                    if (lf >= gameArea.offsetWidth - flap.offsetWidth) {
+                        lf = gameArea.offsetWidth - flap.offsetWidth
+                    }
+                    flap.style.left = lf + "px";
+                }
+            }
+
+            // Para comenzar el juego
+            start.onclick = function () {
+                //se llama al método para el movimiento de pelota
+                ballMove();
+                start.onclick = null;
+            }
+
+            // Se resetea el juego
+            reset.onclick = function () {
+                window.location.reload();
+            }
+
+        }
+
+        
+        // Método del movimiento de la pelota
+        function ballMove() {
+            ball = document.getElementsByClassName("ball")[0];
+            ballId = setInterval(function () {
+                // se mueve en diagonal
+                lf = ball.offsetLeft + speedX;
+                tp = ball.offsetTop + speedY;
+                // Use el bucle for () {} para darse cuenta de que la bola desaparece después de chocar con el ladrillo
+                for (let i = 0; i < bricks.length; i++) {
+                
+                    let bk='';
+                    //for (b in bricks){
+                        bk= bricks[i].div;
+                        //console.log(bk);
+                    
+                        
+                        if ((lf + ball.offsetWidth / 2) >= bk.offsetLeft && (lf + ball.offsetWidth / 2) <= (bk.offsetLeft + bk.offsetWidth) && (bk.offsetTop + bk.offsetHeight) >= ball.offsetTop) {
+                            
+                            bricks[i].colision --;
+
+                            //alert('segundo '+bricks[i].colision + ' div ' + i );
+
+                            if(bricks[i].colision >= 0){
+                                bk.style.display = "none";
+                                
+                               //sumatoria de puntos
+                                n++;
+                                //resta del total de ladrillos
+                                total--;
+                               
+                            }
+                            speedY = 5;
+                            score.innerHTML = "Puntuación: " + n;
+
+                            /*if (total==0){
+                                // La ventana emergente indica que el juego termine
+                                alert("¡Ha ganado" + "\n" + score.innerHTML);
+                                // Intervalo claro
+                                clearInterval(ballId);
+                            }*/
+                        }
+                }
+
+                if (lf < 0) {
+                    speedX = -speedX;
+                }
+                if (lf >= (gameArea.offsetWidth - ball.offsetWidth)) {
+                    speedX = -speedX;
+                }
+                if (tp <= 0) {
+                    speedY = 5;
+                } else if ((ball.offsetTop + ball.offsetHeight) >= flap.offsetTop && (ball.offsetLeft + ball.offsetWidth / 2) >= flap.offsetLeft && (ball.offsetLeft + ball.offsetWidth / 2) <= (flap.offsetLeft + flap.offsetWidth)) {
+                    speedY = -5;
+                } else if (ball.offsetTop >= flap.offsetTop) {
+                    // juego terminado
+                    gameOver();
+                }
+                ball.style.left = lf + 'px';
+                ball.style.top = tp + "px";
+               
+            }, 40)
+        }
+
+        // Determina si el juego ha terminado
+        function gameOver() {
+
+            
+           //Se 
+            alert("!Ha perdido!" + "\n" + score.innerHTML);
+            //se vacía el intervalo
+            clearInterval(ballId);
+        }
+    }
+</script>
+
+
+
+</body>
+</html>
+

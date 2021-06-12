@@ -1,0 +1,86 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* body>div {
+    width: 550px;
+    height: 520px;
+    display: flex;
+    margin: 20px auto;
+} */
+
+/*.container {
+    position: relative;
+    width: 800px;
+    height: 100px;
+    margin: 0 auto;
+    overflow: hidden;
+    /*display: flex;
+}*/
+
+h2 {
+    text-align: center;
+    font-size: 26px;
+    color: rgba(145, 146, 146, 0.918);
+    margin-bottom: 2px;
+}
+
+/*.content {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+}*/
+
+.game {
+    /*position: relative;
+    width: 456px;*/
+    margin-top: 20px;
+    margin-left: 30px;
+    height: 500px;
+    border: 1px solid rgba(145, 146, 146, 0.918);
+    /*margin: 20px 20px 20px;*/
+}
+
+
+
+.brick {
+    margin-top: 10px;
+    margin-left: 80px;
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    background-color: rgb(238, 17, 28);
+}
+
+/* Bisel de pintura */
+.flap {
+    position: absolute;
+    width: 120px;
+    height: 10px;
+    bottom: 0;
+    left: 0;
+    background-color: gray;
+}
+
+.ball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 10px;
+    left: 52px;
+    border-radius: 50%;
+    background-color:black;
+}
+
+#score {
+    width: 100px;
+    height: 30px;
+    right: 0;
+    top: 10%;
+    color: white;
+    background-color: coral;
+}

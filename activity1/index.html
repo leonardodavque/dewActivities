@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Activity 1: DOM manipulation</title>
+  </head>
+  <body>
+    <h1>Activity 1: DOM manipulation</h1>
+    <p>On this activity we will show the data in the variable employees in this html as a table, build all the elements with js functions</p>
+    <div id="table-container"></div>
+    <div id="newTable" style="margin-bottom: 50px;"></div>
+
+    <script>
+     var employees = [{"id":1,"name":"MIRIAM CASTIÑEIRA BREA","department":"IT"},{"id":2,"name":"GONZALO MULET FIGUERAS","department":"IT"},{"id":3,"name":"FRANCISCO JOSE GRAÑA BARBERA","department":"IT"},{"id":4,"name":"IRENE POMBO JORDA","department":"HR"}]
+    
+      newTable = "<table><tr><td style='text-align:center;'>ID</td>";
+                  newTable+="<td style='text-align:center'>Nombre</td>";
+                  newTable+="<td style='text-align:center'>Departamento</td></tr>";
+                 
+                 
+      for(let i=0; i<employees.length; i++){
+        newTable+="<tr><td style='text-align:right'>"+ employees[i].id + "</td>";
+        newTable+="<td style='text-align:right'>"+ employees[i].name + "</td>";
+        newTable+="<td style='text-align:right'>"+ employees[i].department + "</td>";
+        newTable+="</tr>"  
+      }
+      newTable+="</table>"
+
+      document.getElementById("newTable").innerHTML = newTable
+    </script>
+
+    <script>
+
+    var employees = [{"id":1,"name":"MIRIAM CASTIÑEIRA BREA","department":"IT"},{"id":2,"name":"GONZALO MULET FIGUERAS","department":"IT"},{"id":3,"name":"FRANCISCO JOSE GRAÑA BARBERA","department":"IT"},{"id":4,"name":"IRENE POMBO JORDA","department":"HR"}]
+
+    var body = document.getElementsByTagName("body")[0];
+
+    // Crea un elemento <table> y un elemento <tbody>
+    var tabla   = document.createElement("table");
+    var tblBody = document.createElement("tbody");
+    
+    // Crea las columnas de la tabla
+    var columnTitle = document.createElement("tr");
+  
+    var id = document.createElement("th");
+    var textId = document.createTextNode('ID');
+    id.appendChild(textId);
+    columnTitle.appendChild(id);
+    var nane = document.createElement("th");
+    var textName = document.createTextNode('Nombre');
+    nane.appendChild(textName);
+    columnTitle.appendChild(nane);
+    var departament = document.createElement("th");
+    var textDepartament = document.createTextNode('Departamento');
+    departament.appendChild(textDepartament);
+    columnTitle.appendChild(departament);
+      
+
+    // agrega la column al final de la tabla (al final del elemento tblbody)
+    tblBody.appendChild(columnTitle);
+
+    // Crea las celdas
+    for (var i = 0; i < employees.length; i++) {
+     // Crea las columnas de la tabla
+    var columnTitle = document.createElement("tr");
+      
+        var id = document.createElement("td");
+        var textId = document.createTextNode(employees[i].id);
+        id.appendChild(textId);
+        columnTitle.appendChild(id);
+        var nane = document.createElement("td");
+        var textName = document.createTextNode(employees[i].name);
+        nane.appendChild(textName);
+        columnTitle.appendChild(nane);
+        var departament = document.createElement("td");
+        var textDepartament = document.createTextNode(employees[i].name);
+        departament.appendChild(textDepartament);
+        columnTitle.appendChild(departament);
+
+      // agrega la column al final de la tabla (al final del elemento tblbody)
+      tblBody.appendChild(columnTitle);
+    }
+
+    // posiciona el <tbody> debajo del elemento <table>
+    tabla.appendChild(tblBody);
+    
+    body.appendChild(tabla);
+    // modifica el atributo "border" de la tabla y lo fija a "2";
+    tabla.setAttribute("border", "2");
+
+
+    </script>
+
+
+  </body>
+</html>

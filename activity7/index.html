@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Activity 7: the audio tag + events</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .controls div{
+        float: left;
+        margin: 10px;
+        border: 3px solid #000;
+        font-size: 2em;
+        text-align: center;
+       /* width: 50px;*/
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Activity 7: the audio tag + events</h1>
+    <p>This is a music player with a playlist</p>
+    <ul>
+      <li>Add a play icon to the item in the playlist that is currently playing.</li>
+      <li>Add controls to <a href="https://developer.mozilla.org/es/docs/Web/HTML/Elemento/audio">audio tag</a>: play/pause, go back, go forward.</li>
+      <li>When 1 audio ends the following one must estart playing automatically</li>
+    </ul>
+
+    <ol>
+      <li>music1.mp3</li>
+      <li>music2.mp3</li>
+      <li>music3.mp3</li>
+    </ol>
+
+
+    <audio id="reproductor">
+
+     <source src="cancion.mp3" type="audio/mp3">
+
+      <div id="duracion">
+
+        <span></span>
+    
+        <div></div>
+    
+      </div>
+
+     Your browser does not support the audio tag.
+    </audio>
+    <div class="controls">
+      <div class="play"><button class="fa fa-play" id="play" ></div>
+      <div class="reiniciar"><button class="fa fa-fast-backward" id="reset"></div>  
+
+      <div class="backward"><button class="fa fa-step-backward" id="backward" ></div>
+      <div class="fordward"><button class="fa fa-step-forward" id="fordward"></div>
+
+        <div><label id="texto" style="width: 400px;border:1px solid  ">texto</label></div>  
+    </div>
+  </body>
+
+  <script>
+
+
+    var i=1;
+
+    var texto = document.getElementById("texto");
+
+    var canciones = Array("cancion.mp3","cancion2.mp3","cancion3.mp3");
+
+    texto.innerHTML = canciones[0];
+
+    //console.log(canciones);
+
+    var miAudio=document.getElementById("reproductor");
+    
+    var duracion=0;
+    
+    var interval;
+    
+      
+    // funciones de los botones
+    play.onclick = function(){
+        iniciar();
+    } 
+
+    
+    reset.onclick = function(){
+      reiniciar();
+    }
+
+    backward.onclick = function(){
+      retroceder();
+    }
+
+    fordward.onclick = function(){
+      avanzar();
+    }
+
+    //método para iniciar el reproductor 
+    function iniciar(){
+
+      if(reproductor.paused)
+    
+      {
+    
+        // iniciamos
+    
+        reproductor.play();
+    
+        //muestra el icono pause en miniatura
+        document.getElementById("play").innerHTML="&#8545;";
+       
+    
+      }else{
+    
+        // paramos
+    
+        reproductor.pause();
+    
+        //muestra el icono play en miniatura
+        document.getElementById("play").innerHTML="&#8227;";
+
+      }
+    
+    }
+
+    //función para reinicar la canción actual
+    function reiniciar()
+
+    {
+
+	// nos posicionamos al inicio de la cancion
+
+	reproductor.currentTime=0;
+
+	if(reproductor.paused)
+
+	{
+
+		reproductor.play();
+
+	}
+
+}
+
+    reproductor.addEventListener("ended", function(){
+    
+    //muestra el título de la canción actual
+    if (i <3){
+      
+        document.getElementById("reproductor").src=canciones[i];
+        texto.innerHTML = canciones[i];
+        i++;
+    }else{
+      
+      i=1;
+      document.getElementById("reproductor").src=canciones[0];
+      texto.innerHTML = canciones[0];
+    }
+      
+      iniciar();
+      
+      
+    });
+
+//función para retroceder
+function retroceder(){
+
+	// nos posicionamos al inicio de la cancion
+  if(reproductor.currentTime>=20){
+    reproductor.currentTime-=20;
+  }else{
+    reproductor.currentTime=0;
+  }
+	
+		reproductor.play();
+
+} 
+
+//función para avanzar
+function avanzar(){
+
+	// nos posicionamos al inicio de la canción
+    reproductor.currentTime+=20;
+		reproductor.play();
+} 
+
+
+</script>
+
+</html>

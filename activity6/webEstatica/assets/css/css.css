@@ -1,0 +1,216 @@
+
+/*CONTACT*/
+
+/*ALSO INDEX, HOUSE AND INTEREST*/
+.cardText{
+    height: 50px; 
+    overflow: hidden;
+}
+
+#contact{
+    margin-top: 60px;
+   
+}
+#fondoContacto{
+    background-color:#ffffff;
+    
+}
+#cuadro{
+    border: 1px solid ;
+    border-radius: 0px;
+    border-color:#6c757d
+    
+}
+/*CONTACT, INTEREST DETAILS AND HOUSE DETAILS */
+.card-header {
+    border-color:#6c757d
+
+}
+
+/* END CONTACT*/
+
+/* NAV */
+
+
+.fontSize:hover{
+    font-family: cursive;
+}
+
+.principalNav{
+    background: #ffc107;
+}
+
+.user:hover{
+    font-size: 15px;
+}
+/*END NAV*/
+
+/* SECTIONS */
+
+h1{
+   
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    font-style: oblique;
+    font-weight: bold;
+    text-align: center;
+}
+
+h2{
+   
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+.btn-outline-secondary {
+    border-radius: 0px ;
+}
+
+.parra{
+   
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+
+
+/* END SECTIONS */
+
+/*TITLE*/
+
+.itemName{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    
+}
+
+
+/*END TITLE*/
+
+/*PREFERENCES*/
+
+.titleP{
+
+    display: flex;
+    flex-direction: column;
+  
+}
+.titleSectionP{
+    
+    padding-top: 10px;
+}
+.borderP{
+    border: 2px solid #ffc107;
+}
+
+.optionsP{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
+
+.titleSelect{
+    text-align: center;
+    
+    
+}
+label{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}
+select{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+/*END PREFERENCES*/
+
+
+
+ /* HOUSE AND INTEREST*/
+
+    .titlePages{
+        color: rgb(255, 145, 0);
+        padding-top: 15px;
+        
+       
+    
+    }
+
+    .imgG:hover {filter: grayscale(80%);}
+
+ /* HOUSE AND INTEREST*/
+
+/* DETAILS*/
+
+.details{
+    background-color: #ffffff;
+}
+
+.titleDesc{
+    color:gray;
+}
+
+/*ALSO CONTACT*/
+.card-body{
+    border-radius: 0px;
+    border-color:#6c757d;
+}
+
+.card-footer{
+    border-radius: 0px;
+    border-color:#6c757d;
+}
+
+
+
+/* END DETAILS*/
+
+/*FOOTER*/
+
+
+
+@media (max-width:720px){
+
+    .footerContact{
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        
+    }
+    .titlePages{
+        margin-top: 60px;
+    }
+
+}
+
+@media (min-width:720px){
+
+    .footerContact{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        
+    }
+   
+
+}
+
+
+
+footer{
+    background-color: #ff9100;
+    color: white;
+}
+
+
+/*END FOOTER*/

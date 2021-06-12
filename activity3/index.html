@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Activity 3: Forms &amp; click event</title>
+  </head>
+  <body>
+    <h1>Activity 3: Forms &amp; click event</h1>
+    <p>Add a form with two fields ("Rows" and "Columns") and a button ("Generate Table"). When the button is clicked it have to:</p>
+      <ol>
+        <li>remove a table#generated if exists </li>
+        <li>Add a table with as many rows and columns both Rows and Columns fields indicate</li>
+        <li>Each table cell must contain a text like: "Row: X, Col: Y"</li>
+      </ol>
+
+      <form >
+        <label>Rows<input name="rows" type="number" placeholder="rows"></label>
+        <label>Columns<input name="columns" type="number" placeholder="Columns"></label>
+
+        <Button id="generate">Generate Table</Button>
+
+      </form>
+      <div style="margin-top: 20px;" id="table-container"></div>
+      <script src="js.js"></script>
+  </body>
+</html>
